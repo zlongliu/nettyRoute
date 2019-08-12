@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>测试页面</title>
+</head>
+<body>
+<h1 id="report">请点击</h1>
+<script type="text/javascript" src="jquery-3.4.1.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#report").click(function(){
+			var param = {};
+			param.brdnetAcct = "15036111005";
+			param.typeName = "5";
+			param.ssidPwd = "123456"
+			var eqpMacAddrs = [];
+			eqpMacAddrs[eqpMacAddrs.length]={"eqpMacAddr":"123456"};
+			eqpMacAddrs[eqpMacAddrs.length]={"eqpMacAddr":"456789"};
+			param.eqpMacAddrs = eqpMacAddrs;
+			var data = JSON.stringify({"params":param});
+			$.post("search/", {"inputObject":data}, function(data){
+				console.log(data);
+			});
+		})
+	})
+</script>
+</body>
+</html>
