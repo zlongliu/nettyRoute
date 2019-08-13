@@ -1,5 +1,9 @@
 package com.netty.cloud.exception;
-
+/**
+ * 自定义异常类
+ * @author CYQ
+ *
+ */
 public class ServiceException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;

@@ -14,15 +14,15 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class RtDownEquipment implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@TableId
-	private Long eqpId;
-	private String rtMacAddr;
-	private String eqpHostname;
-	private String eqpMacAddr;
-	private String accDownloadTraffic;
-	private String accUploadTraffic;
-	private Date linkTime;
-	private String linkMode;
-	private Date updateTime;
+	private Long eqpId;						//主键
+	private String rtMacAddr;				//路由器mac地址
+	private String eqpHostname;				//下挂设备主机名
+	private String eqpMacAddr;				//下挂设备mac地址
+	private String accDownloadTraffic;		//下载流量
+	private String accUploadTraffic;		//上传流量
+	private Date linkTime;					//挂载日期
+	private String linkMode;				//类型
+	private Date updateTime;				//修改时间
 	public Long getEqpId() {
 		return eqpId;
 	}

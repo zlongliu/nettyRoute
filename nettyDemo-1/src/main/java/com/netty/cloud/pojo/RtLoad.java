@@ -14,14 +14,14 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class RtLoad implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@TableId
-	private Long loadId;
-	private String rtMacAddr;
-	private String wanRate;
-	private String cpuPct;
-	private String memoryPct;
-	private String uploadTraffic;
-	private String downloadTraffic;
-	private Date sampleTime;
+	private Long loadId;				//路由器性能主键
+	private String rtMacAddr;			//路由器mac地址
+	private String wanRate;				//wan口速率
+	private String cpuPct;				//cpu使用率
+	private String memoryPct;			//内存使用率
+	private String uploadTraffic;		//上传量
+	private String downloadTraffic;		//下载量
+	private Date sampleTime;			//采样时间
 	public Long getLoadId() {
 		return loadId;
 	}

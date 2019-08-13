@@ -16,23 +16,23 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class RtInfo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@TableId
-	private Long rtId;
-	private String rtMacAddr;
-	private String broadbandAcc;
-	private String rtBrand;
-	private String rtModel;
-	private String rtSn;
-	private Double coreMhz;
-	private Integer memorySize;
+	private Long rtId;						//路由器主键
+	private String rtMacAddr;				//路由器mac地址
+	private String broadbandAcc;			//宽带账号
+	private String rtBrand;					//路由器品牌
+	private String rtModel;					//路由器型号
+	private String rtSn;					//路由器系列号
+	private Double coreMhz;					//核心频率
+	private Integer memorySize;				//内存
 	@TableField("ssid_24g")
-	private String ssid24G;
+	private String ssid24G;					//2.4G无线账号
 	@TableField("ssid_5g")
-	private String ssid5G;
-	private BigDecimal romVersion;
-	private BigDecimal sentinelVersion;
-	private Date deliveryTime;
-	private Date FirstReportTime;
-	private Date updateTime;
+	private String ssid5G;					//5G无线账号
+	private BigDecimal romVersion;			//固件版本
+	private BigDecimal sentinelVersion;		//哨兵版本
+	private Date deliveryTime;				//出厂时间
+	private Date FirstReportTime;			//第一次报道时间
+	private Date updateTime;				//修改时间
 	public Long getRtId() {
 		return rtId;
 	}

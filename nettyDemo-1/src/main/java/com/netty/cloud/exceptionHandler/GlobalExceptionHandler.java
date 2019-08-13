@@ -12,6 +12,11 @@ import com.netty.cloud.vo.JsonResultVo;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+	/**
+	 * 处理自定义异常
+	 * @param e
+	 * @return
+	 */
 	@ExceptionHandler(ServiceException.class)
 	public JsonResultVo doHandlerServiceException(RuntimeException e) {
 		return JsonResultVo.fail();

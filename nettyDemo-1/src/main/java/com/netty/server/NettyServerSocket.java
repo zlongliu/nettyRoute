@@ -2,15 +2,14 @@ package com.netty.server;
 
 import java.net.InetSocketAddress;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.netty.handler.BaseServerHandler;
-import com.netty.handler.DownEqpServerHandler;
-import com.netty.handler.HeartBeatServerHandler;
-import com.netty.handler.PerformServerHandler;
-import com.netty.handler.ReportServerHandler;
-import com.netty.handler.SpeedTestServerHandler;
+import com.netty.handler.TransitServerHandler;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -32,24 +31,19 @@ import io.netty.handler.timeout.ReadTimeoutHandler;
  */
 @Component
 public class NettyServerSocket {
-	private final int port = 8090;
+	private static final Logger LOGGER = LoggerFactory.getLogger(NettyServerSocket.class);
+	@Value("${netty.port}")
+	private int port;
 	private EventLoopGroup bossGroup = new NioEventLoopGroup(1);
 	private EventLoopGroup workerGroup = new NioEventLoopGroup();
-	@Autowired
-	private ReportServerHandler reportServerHandler;
-	@Autowired
-	private DownEqpServerHandler downEqpServerHandler;
-	@Autowired
-	private HeartBeatServerHandler heartBeatServiceHandler;
-	@Autowired
-	private PerformServerHandler performServerHandler;
-	@Autowired
-	private SpeedTestServerHandler speedTestServerHandler;
 	@Autowired
 	private NettyServerSocketReceive socketReceive;
 	@Autowired
 	private BaseServerHandler baseServerHandler;
+	@Autowired
+	private TransitServerHandler transitServerHandler;
 	public NettyServerSocket() {
+		//用线程启动，否则主线程会进入阻塞
 		new Thread() {
 			public void run() {
 				init();
@@ -76,19 +70,14 @@ public class NettyServerSocket {
 							.addLast("encoder",new StringEncoder())
 							.addLast(new ReadTimeoutHandler(60))							
 							.addLast(baseServerHandler)
-							.addLast(heartBeatServiceHandler)
-							.addLast(downEqpServerHandler)
-							.addLast(reportServerHandler)
-							.addLast(speedTestServerHandler)
-							.addLast(performServerHandler);
-						
+							.addLast(transitServerHandler);						
 					}
 				});
 			ChannelFuture future = b.bind().sync();
 			if (future.isSuccess()) {
-				System.out.println("server: 已启动");
+				LOGGER.info("server: 已启动");
 			}else {
-				System.out.println("server: 启动失败");
+				LOGGER.info("server: 启动失败");
 			}
 			
 			new Thread(socketReceive).start();
@@ -101,13 +90,12 @@ public class NettyServerSocket {
 		try {
 			start();
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.info("server: 运行结束", e);
 		}
 	}
 	public void destory() {
 		bossGroup.shutdownGracefully();
 		workerGroup.shutdownGracefully();
-		System.out.println("server: 已关闭");
 	}
 
 }

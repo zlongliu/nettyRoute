@@ -14,15 +14,15 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class RtSpeedTestLog implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@TableId
-	private Long stId;
-	private String rtMacAddr;
-	private String opter;
-	private Integer optType;
-	private Date optTime;
-	private Date stStartTime;
-	private Date stEndTime;
-	private String uploadRate;
-	private String downloadRate;
+	private Long stId;					//测速主键
+	private String rtMacAddr;			//路由器mac地址
+	private String opter;				//操作人
+	private Integer optType;			//操作类型
+	private Date optTime;				//操作时间
+	private Date stStartTime;			//测速开始时间
+	private Date stEndTime;				//测速结束时间
+	private String uploadRate;			//上传速率
+	private String downloadRate;		//下载速率
 	public Long getStId() {
 		return stId;
 	}

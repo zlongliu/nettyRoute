@@ -15,7 +15,11 @@ import com.netty.cloud.service.OrderService;
 import com.netty.cloud.vo.JsonResultVo;
 import com.netty.util.JsonConvert;
 
-
+/**
+ * 指令请求拦截类
+ * @author CYQ
+ *
+ */
 @RestController
 @RequestMapping("/order")
 public class OrderController {

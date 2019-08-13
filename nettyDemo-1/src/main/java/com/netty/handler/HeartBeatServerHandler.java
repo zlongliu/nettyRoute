@@ -29,11 +29,6 @@ public class HeartBeatServerHandler extends SimpleChannelInboundHandler<ReceiveV
 	private Jedis jedis;
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, ReceiveVo base) throws Exception {
-		System.out.println(666);
-		if (!"heartBeat".equals(base.getMsgCode())) {
-			ctx.fireChannelRead(base);
-			return;
-		}
 		String mac = base.getMac();
 		Channel channel = ctx.channel();
 		ChannelId channelId = channel.id();

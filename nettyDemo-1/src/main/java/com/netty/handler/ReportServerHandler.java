@@ -33,11 +33,6 @@ public class ReportServerHandler extends SimpleChannelInboundHandler<ReceiveVo> 
 	private PrimaryKeyUtils primaryKey;
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, ReceiveVo base) throws Exception {
-		if (!"reportMsg".equals(base.getMsgCode().trim())) {
-			//传递到下一个处理器
-			ctx.fireChannelRead(base);
-			return;
-		}
 		LOGGER.info("报道消息");
 		Channel channel = ctx.channel();
 		ChannelId channelId = channel.id();

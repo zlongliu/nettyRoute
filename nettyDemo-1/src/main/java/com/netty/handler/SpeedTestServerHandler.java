@@ -30,11 +30,6 @@ public class SpeedTestServerHandler extends SimpleChannelInboundHandler<ReceiveV
 	private PrimaryKeyUtils primaryKey;
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, ReceiveVo base) throws Exception {
-		System.out.println(333);
-		if (!"testSpeedResult".equals(base.getMsgCode())) {
-			ctx.fireChannelRead(base);
-			return;
-		}
 		LOGGER.info("测速信息");
 		RtSpeedTestLog rtSpeedTestLog = SealObjectUtils.getObject(base, RtSpeedTestLog.class);
 		//查询之前是否已经报道过，已有则更新原有数据表，没有则插入

@@ -30,11 +30,6 @@ public class PerformServerHandler extends SimpleChannelInboundHandler<ReceiveVo>
 	private PrimaryKeyUtils primaryKey;
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, ReceiveVo base) throws Exception {
-		System.out.println(444);
-		if (!("selectWANResult".equals(base.getMsgCode()) || "routesPerformanceResult".equals(base.getMsgCode()))) {
-			ctx.fireChannelRead(base);
-			return;
-		}
 		LOGGER.info("路由器性能");
 		RtLoad rtLoad = SealObjectUtils.getObject(base, RtLoad.class);
 		// 查询之前是否已经报道过，已有则更新原有数据表，没有则插入

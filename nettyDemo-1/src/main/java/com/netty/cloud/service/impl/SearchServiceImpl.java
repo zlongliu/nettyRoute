@@ -81,7 +81,7 @@ public class SearchServiceImpl implements SearchService {
 	private Object getRoutePerform(String mac, Date orderDate) {
 		LOGGER.info("查询路由器性能方法 start");
 		QueryWrapper<RtLoad> queryWrapper = new QueryWrapper<>();
-		queryWrapper.eq("rt_mac_addr", mac).gt("updateTime", orderDate);
+		queryWrapper.eq("rt_mac_addr", mac).gt("update_time", orderDate);
 		RtLoad rtLoad = rtLoadMapper.selectOne(queryWrapper);
 		LOGGER.info("查询路由器性能方法 end");
 		return rtLoad;
@@ -95,7 +95,7 @@ public class SearchServiceImpl implements SearchService {
 	private Object getWanSpeed(String mac, Date orderDate) {
 		LOGGER.info("查询wan口速率方法 start");
 		QueryWrapper<RtLoad> queryWrapper = new QueryWrapper<>();
-		queryWrapper.eq("rt_mac_addr", mac).gt("updateTime", orderDate);
+		queryWrapper.eq("rt_mac_addr", mac).gt("update_time", orderDate);
 		RtLoad rtLoad = rtLoadMapper.selectOne(queryWrapper);
 		LOGGER.info("查询wan口速率方法 end");
 		return rtLoad;
@@ -109,7 +109,7 @@ public class SearchServiceImpl implements SearchService {
 	private Object getDownEqps(String mac, Date orderDate) {
 		LOGGER.info("查询下挂设备方法 start");
 		QueryWrapper<RtDownEquipment> queryWrapper = new QueryWrapper<>();
-		queryWrapper.eq("rt_mac_addr", mac).gt("updateTime", orderDate);
+		queryWrapper.eq("rt_mac_addr", mac).gt("update_time", orderDate);
 		List<RtDownEquipment> rtDownEqpList = rtDownEqpMapper.selectList(queryWrapper);
 		LOGGER.info("查询下挂设备方法 end");
 		return rtDownEqpList;

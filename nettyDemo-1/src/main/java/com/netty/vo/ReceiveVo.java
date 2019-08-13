@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * 云端统一接收哨兵消息类
+ * @author CYQ
+ *
+ */
 public class ReceiveVo implements Serializable{
 
 	private static final long serialVersionUID = 1L;

@@ -1,7 +1,11 @@
 package com.netty.cloud.vo;
 
 import java.io.Serializable;
-
+/**
+ * 云端统一发送消息值类
+ * @author CYQ
+ *
+ */
 public class CloudSendVo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String from = "cloud";

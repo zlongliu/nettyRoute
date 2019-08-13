@@ -34,11 +34,6 @@ public class DownEqpServerHandler extends SimpleChannelInboundHandler<ReceiveVo>
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, ReceiveVo base) throws Exception {
-		System.out.println(555);
-		if (!"selectConnectEquipmentResult".equals(base.getMsgCode())) {
-			ctx.fireChannelRead(base);
-			return;
-		}
 		LOGGER.info("查询下挂设备");
 		List<RtDownEquipment> lists = new ArrayList<>();
 		lists = SealObjectUtils.getObject(base, lists.getClass());;

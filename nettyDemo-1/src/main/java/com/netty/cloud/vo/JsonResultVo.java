@@ -1,7 +1,11 @@
 package com.netty.cloud.vo;
 
 import java.io.Serializable;
-
+/**
+ * 统一返回值类
+ * @author CYQ
+ *
+ */
 public class JsonResultVo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String rtnCode;

@@ -1,15 +1,35 @@
-server:
-  port: 8080
-  servlet:
-    context-path: /
-    
 spring:
+  profiles:
+    active: dev
+
+jasypt:
+  encryptor:
+    password: netty
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+# 开发环境
+---
+spring:
+  profiles: dev
+  
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/route?characterEncoding=utf-8&useUnicode=true&serverTimezone=GMT%2B8
     username: root
-    password: cyq121210
+    password: ENC(IVsR3SDBimVWukHafE0zFcDxU0czj4fk) 
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+
+    
     
 mybatis-plus:
   type-aliases-package: com.netty.cloud.pojo
@@ -21,12 +41,42 @@ logging:
   level:
     com.netty.cloud.mapper: debug
 
+netty.port: 8090
 redis.host: 192.168.5.220
 redis.port: 6379
 redis.hostName: netty1
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+#生产环境
+---
+spring:
+  profiles: pro
+  
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/route?characterEncoding=utf-8&useUnicode=true&serverTimezone=GMT%2B8
+    username: root
+    password: ENC(IVsR3SDBimVWukHafE0zFcDxU0czj4fk) 
+
+server:
+  port: 8088
+  servlet:
+    context-path: /
+
+
+    
+    
+mybatis-plus:
+  type-aliases-package: com.netty.cloud.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mapper/*.xml
+  
+logging:
+  level:
+    com.netty.cloud.mapper: info
+
+netty.port: 8092
+redis.host: 192.168.5.220
+redis.port: 6379
+redis.hostName: netty1

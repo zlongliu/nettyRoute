@@ -29,11 +29,14 @@ public class NettyServerSocketReceive implements Runnable{
 	public NettyServerSocketReceive() {
 	}
 	public void active() {
-		
+		try {
 			List<String> receives = jedisMq.brpop(0, hostName);
 			LOGGER.info("接到数据啦", receives);
 			String message = receives.get(1);
-			SendOrderUtils.send(message);				
+			SendOrderUtils.send(message);	
+		} catch (Exception e) {
+			LOGGER.info("jedisMq: redis关闭", e);
+		}
 	}
 	@Override
 	public void run() {
